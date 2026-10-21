@@ -1,0 +1,56 @@
+[
+  {
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "email": "alice@example.com",
+    "dateOfBirth": "1990-05-15",
+    "preferences": {
+      "theme": "dark",
+      "language": "en",
+      "notifications": true,
+      "subscription": true
+    },
+    "address": {
+      "street": "123 Maple St",
+      "city": "Springfield",
+      "state": "IL",
+      "zipCode": "62704"
+    }
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Johnson",
+    "email": "bob@example.com",
+    "dateOfBirth": "1985-11-22",
+    "preferences": {
+      "theme": "light",
+      "language": "es",
+      "notifications": false,
+      "subscription": false
+    },
+    "address": {
+      "street": "456 Oak Ave",
+      "city": "Seattle",
+      "state": "WA",
+      "zipCode": "98101"
+    }
+  },
+  {
+    "firstName": "Carol",
+    "lastName": "Williams",
+    "email": "carol@example.com",
+    "dateOfBirth": "1992-03-08",
+    "preferences": {
+      "theme": "system",
+      "language": "fr",
+      "notifications": true,
+      "subscription": true
+    },
+    "address": {
+      "street": "789 Pine Rd",
+      "city": "Austin",
+      "state": "TX",
+      "zipCode": "78701"
+    }
+  }
+]

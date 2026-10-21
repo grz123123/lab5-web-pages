@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户档案列表</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f6f9;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 12px;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    #error {
+      color: red;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>用户档案列表</h1>
+
+  <table id="profileTable">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Date of Birth</th>
+        <th>Theme</th>
+        <th>Language</th>
+        <th>Notifications</th>
+        <th>Subscription</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p id="error"></p>
+
+  <script>
+    // 按照要求使用 fetch API 获取 JSON 数据
+    fetch('userProfiles.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Fetch error: ' + response.status);
+        }
+        return response.json(); // 直接解析为 JS 对象数组
+      })
+      .then(json => {
+        const tbody = document.querySelector('#profileTable tbody');
+        
+        // 遍历每个用户
+        json.forEach(user => {
+          // 拼接地址
+          const address = `${user.address.street}, ${user.address.city}, ${user.address.state} ${user.address.zipCode}`;
+          
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${user.firstName}</td>
+            <td>${user.lastName}</td>
+            <td>${user.email}</td>
+            <td>${user.dateOfBirth}</td>
+            <td>${user.preferences.theme}</td>
+            <td>${user.preferences.language}</td>
+            <td>${user.preferences.notifications ? 'On' : 'Off'}</td>
+            <td>${user.preferences.subscription ? 'Subscribed' : 'Not Subscribed'}</td>
+            <td>${address}</td>
+          `;
+          
+          tbody.appendChild(row);
+        });
+      })
+      .catch(err => {
+        document.getElementById('error').textContent = '加载数据失败：' + err.message;
+        console.error('Fetch error: ' + err.message);
+      });
+  </script>
+
+</body>
+</html>

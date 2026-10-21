@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 简单图书目录 -->
+<bookstore>
+
+  <book id="B001">
+    <title>XML in a Nutshell</title>
+    <author>Elliotte Rusty Harold</author>
+    <price>39.99</price>
+  </book>
+
+  <book id="B002">
+    <title>Learning XML</title>
+    <author>Erik T. Ray</author>
+    <price>29.95</price>
+  </book>
+
+  <book id="B003">
+    <title>JavaScript: The Good Parts</title>
+    <author>Douglas Crockford</author>
+    <price>24.50</price>
+  </book>
+
+  <book id="B004">
+    <title>HTML and CSS: Design and Build Websites</title>
+    <author>Jon Duckett</author>
+    <price>34.00</price>
+  </book>
+
+  <book id="B005">
+    <title>Clean Code</title>
+    <author>Robert C. Martin</author>
+    <price>42.75</price>
+  </book>
+
+</bookstore>
