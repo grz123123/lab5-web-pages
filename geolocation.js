@@ -1,0 +1,35 @@
+let x = document.getElementById("geolocation");
+
+function getGeolocation() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(showGeolocation, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+
+function showGeolocation(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+                  "<br>Longitude: " + position.coords.longitude;
+}
+
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "用户拒绝了地理定位请求。"
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "位置信息不可用。"
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "请求获取用户位置超时。"
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "发生未知错误。"
+            break;
+    }
+}

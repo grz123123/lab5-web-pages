@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1 - Smiley Face</title>
+    <style>
+        body {
+            background-color: #98fb98;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            background-color: #98fb98;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="smileyCanvas" width="500" height="500"></canvas>
+
+<script>
+    const canvas = document.getElementById('smileyCanvas');
+    const ctx = canvas.getContext('2d');
+
+
+    const centerX = 250;
+    const centerY = 230;
+
+
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 155, 0, 2 * Math.PI);
+    ctx.fillStyle = '#FFFF00';
+    ctx.fill();
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = '#000000';
+    ctx.stroke();
+
+
+    ctx.beginPath();
+    ctx.arc(centerX - 60, centerY - 30, 12, 0, 2 * Math.PI);
+    ctx.fillStyle = '#000000';
+    ctx.fill();
+
+
+    ctx.beginPath();
+    ctx.arc(centerX + 60, centerY - 30, 12, 0, 2 * Math.PI);
+    ctx.fillStyle = '#000000';
+    ctx.fill();
+
+
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY - 15);
+    ctx.lineTo(centerX, centerY + 25);
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = '#000000';
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+    ctx.arc(centerX, centerY + 25, 95, 0.15 * Math.PI, 0.85 * Math.PI);
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = '#000000';
+    ctx.stroke();
+
+
+    ctx.font = 'bold 28px Arial, sans-serif';
+    ctx.fillStyle = '#008000';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('The Canvas brought me to life!', centerX, 450);
+</script>
+
+</body>
+</html>

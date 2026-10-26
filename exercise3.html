@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3 - To-Do List</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .input-area { margin-bottom: 20px; }
+        input[type="text"] { padding: 8px; font-size: 16px; width: 200px; }
+        button { padding: 8px 12px; font-size: 16px; cursor: pointer; }
+        ul { list-style-type: disc; padding-left: 20px; }
+        li { font-size: 18px; margin-bottom: 8px; }
+        .delete-btn {
+            margin-left: 15px;
+            color: red;
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+            background: none;
+        }
+        .delete-btn:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <h2>To-Do List</h2>
+
+    <div class="input-area">
+        <input type="text" id="taskInput" placeholder="输入新任务...">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <ul id="taskList">
+
+    </ul>
+
+    <script>
+
+        let tasks = JSON.parse(localStorage.getItem('myTasks')) || [];
+
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+
+        function renderTasks() {
+            taskList.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.textContent = task;
+
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '删除';
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.onclick = () => deleteTask(index);
+
+                li.appendChild(deleteBtn);
+                taskList.appendChild(li);
+            });
+        }
+
+
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                tasks.push(taskText);
+                saveTasks();
+                taskInput.value = '';
+                renderTasks();
+            } else {
+                alert("请输入任务内容！");
+            }
+        }
+
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
+        }
+
+
+        function saveTasks() {
+            localStorage.setItem('myTasks', JSON.stringify(tasks));
+        }
+
+
+        renderTasks();
+
+
+        taskInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+
+</body>
+</html>
